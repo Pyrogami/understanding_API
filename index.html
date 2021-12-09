@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Country info</title>
+</head>
+    <body class="bg">
+        <div class="container">
+            <div class="title-segment">
+                <h1 class="title-style">Country Information</h1>
+                <button class="btn-style" id="load-button">Load</button>
+            </div>
+            <div class="flex-list" id="output">
+                
+            </div>
+        </div>
+
+        <script>
+
+            document.getElementById('load-button').addEventListener('click', function(e){
+                fetch('https://restcountries.com/v3.1/all')
+                .then(function(res){
+                    const nationData = res.json();
+                    return nationData;
+                })
+                .then(function(data){
+                    let output = '';
+
+                    console.log(data)
+                    for(let i = 0; i < 101; i++){
+
+                        let key = null;
+                        try{
+                            let key = Object.keys(data[i].currencies);
+                            currency = data[i].currencies[key[0]].name;  
+                            countryName = data[i].name.common;
+                            capitalCity = data[i].capital;
+                            region = data[i].region
+                        } catch(error){
+                            console.log('difficult value ' + i)
+                        }
+
+                        
+                        const flagsPng = data[i].flags.png;
+                        const result = document.querySelector('#output');
+                        let region = data[i].region;
+                        
+                        result.addEventListener('click', function(e){
+                            localStorage.setItem('region', region);
+                            localStorage.setItem('country', countryName);
+                            localStorage.setItem('flag', flagsPng);
+                        })    
+                        
+                        output += `
+                        <div class="card-template">
+                            <img src="${flagsPng}" style="width:200px;">
+                            <h5 class="card-text">Country : ${countryName}</h5>
+                            <h5 class="card-text">Capital : ${capitalCity}</h5>
+                            <h5 class="card-text">Currency : ${currency}</h5>
+                            <button class="btn-style" id="more-btn">More</button>
+                        </div>
+                        `
+                    }
+                    document.querySelector('#output').innerHTML = output;    
+                    // const result = document.querySelector('#output');
+                    // let region = data[i].region;
+                    // result.addEventListener('click', function(e){
+                    //     localStorage.setItem('region', region);
+                    //     localStorage.setItem('country', countryName);                        
+                    // })                
+                })
+            })
+
+            
+        
+        </script>
+    </body>
+</html>
+

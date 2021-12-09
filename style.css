@@ -1,0 +1,48 @@
+.bg{
+    background-color: rgb(208, 208, 208);
+}
+
+.title-segment{
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-style{
+    font-style: 'Roboto';
+}
+
+.btn-style{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: none;
+    background-color: rgb(76, 76, 76);
+    border-radius: 3px;
+    color: white;
+    width: 100px;
+}
+
+.container{
+    margin: 0 60px;
+    font-style: 'Roboto';
+}
+.card-template{
+    background-color: rgb(240, 240, 240);
+    width: 300px;
+    margin: 30px 0;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 2.5px 5px 5px rgba(108, 105, 105, 0.5) ;
+}
+
+.card-text{
+    font-family: 'Roboto', sanserif;
+}
+
+.flex-list{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
